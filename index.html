@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sasirangan Web - E-Commerce Kain Sasirangan Kalimantan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2E7D32;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: "🏺";
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #2E7D32;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            padding: 2rem 0;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1, h2 {
+            margin-bottom: 1rem;
+            color: #2E7D32;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(156, 215, 159, 0.8), rgba(85, 152, 87, 0.8)), url('img/home.jpg'); /* Ganti dengan nama file gambar Anda */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-button {
+            background: #4CAF50;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .cta-button:hover {
+            background: #388E3C;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.6);
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid #2E7D32;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(46, 125, 50, 0.3);
+        }
+
+        .product-image {
+        width: 100%;
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        
+        .sasirangan-motif-1 {
+        background: url('img/1.png');
+        background-size: cover;
+        background-position: center;
+        }
+
+        .sasirangan-motif-2 {
+        background: url('img/2.png');
+        background-size: cover;
+        background-position: center;
+        }
+
+        .sasirangan-motif-3 {
+        background: url('img/3.png');
+        background-size: cover;
+        background-position: center;
+        }
+
+        .sasirangan-motif-4 {
+        background: url('img/4.png');
+        background-size: cover;
+        background-position: center;
+        }
+
+        .sasirangan-motif-5 {
+        background: url('img/5.png');
+        background-size: cover;
+        background-position: center;
+        }
+
+        .sasirangan-motif-6 {
+        background: url('img/6.png');
+        background-size: cover;
+        background-position: center;
+        }
+
+        .sasirangan-motif-7 {
+        background: url('img/7.png');
+        background-size: cover;
+        background-position: center;
+        }
+
+        .sasirangan-motif-8 {
+        background: url('img/8.png');
+        background-size: cover;
+        background-position: center;
+        }
+
+        .sasirangan-motif-9 {
+        background: url('img/9.png');
+        background-size: cover;
+        background-position: center;
+        }
+
+        .sasirangan-motif-10 {
+        background: url('img/10.png');
+        background-size: cover;
+        background-position: center;
+        }
+
+        .sasirangan-motif-11 {
+        background: url('img/11.png');
+        background-size: cover;
+        background-position: center;
+        }
+
+        .sasirangan-motif-12 {
+        background: url('img/12.png');
+        background-size: cover;
+        background-position: center;
+        }
+
+        .sasirangan-motif-13 {
+        background: url('img/13.png');
+        background-size: cover;
+        background-position: center;
+        }
+
+        .sasirangan-motif-14 {
+        background: url('img/14.png');
+        background-size: cover;
+        background-position: center;
+        }
+
+        .sasirangan-motif-15 {
+        background: url('img/15.png');
+        background-size: cover;
+        background-position: center;
+        }
+
+        .sasirangan-motif-16 {
+        background: url('img/16.png');
+        background-size: cover;
+        background-position: center;
+        }
+
+        .sasirangan-motif-17 {
+        background: url('img/17.png');
+        background-size: cover;
+        background-position: center;
+        }
+
+        .sasirangan-motif-18 {
+        background: url('img/18.png');
+        background-size: cover;
+        background-position: center;
+        }
+
+        .sasirangan-motif-19 {
+        background: url('img/19.png');
+        background-size: cover;
+        background-position: center;
+        }
+
+        .sasirangan-motif-20 {
+        background: url('img/20.png');
+        background-size: cover;
+        background-position: center;
+        }
+
+        .sasirangan-motif-21 {
+        background: url('img/21.png');
+        background-size: cover;
+        background-position: center;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #2E7D32;
+            font-weight: bold;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: #4CAF50;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* News Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid #2E7D32;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(46, 125, 50, 0.3);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            background-blend-mode: multiply; /* Ensure blend mode is applied */
+        }
+
+        /* Specific news image backgrounds */
+        .news-image.festival {
+            background: linear-gradient(45deg, rgba(46, 125, 50, 0.7), rgba(76, 175, 80, 0.7)), url('https://images.unsplash.com/photo-1586953208448-b95a79798f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');
+        }
+
+        .news-image.modern {
+            background: linear-gradient(45deg, rgba(56, 142, 60, 0.7), rgba(102, 187, 106, 0.7)), url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');
+        }
+
+        .news-image.international {
+            background: linear-gradient(45deg, rgba(67, 160, 71, 0.7), rgba(129, 199, 132, 0.7)), url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');
+        }
+
+        .news-image.training {
+            background: linear-gradient(45deg, rgba(46, 125, 50, 0.7), rgba(76, 175, 80, 0.7)), url('https://images.unsplash.com/photo-1586953208448-b95a79798f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #2E7D32;
+            font-weight: bold;
+        }
+
+        .news-date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Quiz Styles */
+        .quiz-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .question {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border: 2px solid #2E7D32;
+        }
+
+        .question h3 {
+            margin-bottom: 1rem;
+            color: #2E7D32;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .option {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .option:hover {
+            background: #e9ecef;
+            border-color: #2E7D32;
+        }
+
+        .option.selected {
+            background: #2E7D32;
+            color: white;
+            border-color: #2E7D32;
+        }
+
+        .quiz-result {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+            color: white;
+            border-radius: 15px;
+            margin-top: 2rem;
+            display: none;
+        }
+
+        .quiz-button {
+            background: #4CAF50;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+            display: block; /* Make it a block element to center with margin auto */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .quiz-button:hover {
+            background: #388E3C;
+            transform: translateY(-2px);
+        }
+
+        /* Map Container */
+        .map-container {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, #2E7D32, #4CAF50);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            margin-top: 2rem;
+            border: 3px solid #2E7D32;
+            overflow: hidden; /* To contain the iframe */
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px; /* Match container border-radius slightly smaller */
+        }
+
+        /* Cultural Info Box */
+        .cultural-info {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .cultural-info h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(46, 125, 50, 0.9);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        footer a {
+            color: #8BC34A; /* Lighter green for links */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #C8E6C9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: #2E7D32;
+            }
+            
+            .mobile-menu {
+                display: none;
+                flex-direction: column;
+                gap: 1rem;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 2rem;
+                border-radius: 0 0 15px 15px;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .mobile-menu.active {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">Sasirangan Web</a>
+            <ul class="nav-links">
+                <li><a onclick="showSection('home')">Beranda</a></li>
+                <li><a onclick="showSection('products')">Produk Sasirangan</a></li>
+                <li><a onclick="showSection('news')">Berita Desain</a></li>
+                <li><a onclick="showSection('collection')">Motif Premium</a></li>
+                <li><a onclick="showSection('maps')">Lokasi Toko</a></li>
+                <li><a onclick="showSection('quiz')">Quiz Budaya</a></li>
+            </ul>
+            <div class="menu-toggle" onclick="toggleMobileMenu()">☰</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section id="home" class="section active">
+            <div class="hero">
+                <h1>Selamat Datang di Sasirangan Web</h1>
+                <p>Platform e-commerce terpercaya untuk kain Sasirangan authentic dari Kalimantan Selatan</p>
+                <a href="#" class="cta-button" onclick="showSection('products')">Jelajahi Koleksi</a>
+            </div>
+            
+            <div class="cultural-info">
+                <h3>🏺 Tentang Sasirangan</h3>
+                <p>Sasirangan adalah kain tradisional khas Kalimantan Selatan yang memiliki motif dan warna unik. Dibuat dengan teknik ikat celup yang telah diwariskan turun temurun, setiap helai kain Sasirangan memiliki cerita dan makna filosofis yang mendalam.</p>
+            </div>
+            
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-1">Sasirangan Klasik</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Sasirangan Motif Tradisional</h3>
+                        <p class="product-description">Kain sasirangan dengan motif klasik yang elegan</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-2">Sasirangan Modern</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Sasirangan Kontemporer</h3>
+                        <p class="product-description">Perpaduan motif tradisional dengan sentuhan modern</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-3">Sasirangan Premium</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Sasirangan Eksklusif</h3>
+                        <p class="product-description">Kain sasirangan premium dengan kualitas terbaik</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="products" class="section">
+            <h2>🏺 Koleksi Produk Sasirangan</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-1">Kemeja Sasirangan</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Kemeja Sasirangan Pria</h3>
+                        <p class="product-description">Kemeja formal dengan motif sasirangan klasik untuk pria</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-2">Blouse Sasirangan</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Blouse Sasirangan Wanita</h3>
+                        <p class="product-description">Blouse elegan dengan motif sasirangan untuk wanita</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-3">Kain Sasirangan Meteran</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Kain Sasirangan Meteran</h3>
+                        <p class="product-description">Kain sasirangan berkualitas tinggi dijual per meter</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-1">Dress Sasirangan</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Dress Sasirangan Eksklusif</h3>
+                        <p class="product-description">Dress pesta dengan motif sasirangan yang memukau</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-2">Tas Sasirangan</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Tas Sasirangan Handmade</h3>
+                        <p class="product-description">Tas cantik dengan motif sasirangan buatan tangan</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-3">Selendang Sasirangan</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Selendang Sasirangan</h3>
+                        <p class="product-description">Selendang tradisional dengan motif sasirangan authentic</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="news" class="section">
+            <h2>📰 Berita Desain & Budaya</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-image festival">Festival Sasirangan 2025</div>
+                    <div class="news-content">
+                        <h3 class="news-title">Festival Sasirangan 2025 Digelar Meriah</h3>
+                        <p class="news-date">7 Juli 2025</p>
+                        <p>Festival Sasirangan tahunan kembali digelar dengan menampilkan berbagai inovasi desain kain tradisional Kalimantan Selatan. Acara ini menghadirkan puluhan pengrajin dan desainer yang memamerkan karya terbaru mereka.</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image modern">Motif Sasirangan Modern</div>
+                    <div class="news-content">
+                        <h3 class="news-title">Inovasi Motif Sasirangan di Era Digital</h3>
+                        <p class="news-date">5 Juli 2025</p>
+                        <p>Pengrajin muda Kalimantan Selatan menggunakan teknologi digital untuk menciptakan motif sasirangan baru yang tetap mempertahankan nilai tradisional namun dengan sentuhan kontemporer yang menarik.</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image international">Sasirangan Go International</div>
+                    <div class="news-content">
+                        <h3 class="news-title">Sasirangan Merambah Pasar Internasional</h3>
+                        <p class="news-date">3 Juli 2025</p>
+                        <p>Kain sasirangan kini mulai dikenal di pasar internasional. Beberapa desainer fashion dunia tertarik menggunakan motif sasirangan dalam koleksi mereka, membuka peluang ekspor yang besar.</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image training">Pelatihan Sasirangan</div>
+                    <div class="news-content">
+                        <h3 class="news-title">Program Pelatihan Sasirangan untuk Generasi Muda</h3>
+                        <p class="news-date">1 Juli 2025</p>
+                        <p>Pemerintah Kalimantan Selatan meluncurkan program pelatihan membuat sasirangan untuk generasi muda guna melestarikan budaya tradisional dan menciptakan lapangan kerja baru.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="collection" class="section">
+            <h2>👑 Motif Premium Sasirangan</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-1">Gigi Haruan</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Ketajaman Berpikir</h3>
+                        <p class="product-description">Ikan haruan atau ikan gabus memiliki gigi runcing dan tajam</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-2">Ular Lidi</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Kecerdikan</h3>
+                        <p class="product-description">Ular kecil yang cerdik namun berbisa</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-3">Kambang Kacang</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Keakraban dan kekerabatan</h3>
+                        <p class="product-description">Sayuran makanan sehari-hari</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-4">Hiris Gagatas</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Cantik</h3>
+                        <p class="product-description">Kue khas Banjar berbentuk wajik</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-5">Kambang Sakaki</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Keindahan</h3>
+                        <p class="product-description">Sekuntum bunga yang banyak digunakan dalam ornamen khas Banja</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-6">Dara Manginang</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Keindahan</h3>
+                        <p class="product-description">Seorang gadis makan sirih</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-7">Turun Dayang</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Keindahan</h3>
+                        <p class="product-description">Gadis prlayan di istana</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-8">Mayang Maurai</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Keindahan</h3>
+                        <p class="product-description">Mayang pinang digunakan untuk mandi pengantin dan mandi 7 bulanan wanita hamil</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-9">Ramak Sahang</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Keindahan</h3>
+                        <p class="product-description">Merica hancur</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-10">Daun Jaruju</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Tolak Bala</h3>
+                        <p class="product-description">Daun jaruju digunakan untuk mengusir tikus</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-11">Tampuk Manggis</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Kejujuran dan Kerja Keras</h3>
+                        <p class="product-description">Jumlah isi buah manggis sesuai tampuk buah manggis</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-12">Bintang</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Tanda Kebesaran Tuhan, Religius</h3>
+                        <p class="product-description">Bintang bertabur</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-13">Banawati</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Keagungan</h3>
+                        <p class="product-description">Bintang bertabur</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-14">Kangkung Kaumbakan</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Tahan godaan/ cobaan/ ujian, pantang menyerah, dan tidak putus asa</h3>
+                        <p class="product-description">Saat terkena ombak, batang kangkung tidak putus</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-15">Ombak Sinapur Karang</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Perjalanan hidup manusia</h3>
+                        <p class="product-description">Ombak menerjang karang</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-16">Bayam Raja</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Bermatabat dan dihormati</h3>
+                        <p class="product-description">Seorang yang dihormati dan bermartabat</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-17">Kulat Kurikit</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Hidup mandiri dan tahan menderita</h3>
+                        <p class="product-description">Jamur yang menempel pada batang atau dahan pohon</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-18">Hiris Pudak</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Bermnfaat</h3>
+                        <p class="product-description">Pudak/pandan yang berbau harum yang memiliki multi guna sebagai pewarna kue, karangan bunga, pelengkap bunga rampai</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-19">Daun Katu</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Bermanfaat</h3>
+                        <p class="product-description">Pucuk daun katu dijadikan sayur yang dapat memperbanyak ASI</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-20">Naga Balimbur</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Menyenangkan dan Menggembirakan</h3>
+                        <p class="product-description">Naga yang sedang mandi dengan riang pada waktu pagi</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image sasirangan-motif-21">Gelombang</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Keuletan dan Kesabaran</h3>
+                        <p class="product-description">Gelombang air di laut</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="maps" class="section">
+            <h2>📍 Lokasi Toko & Galeri Sasirangan</h2>
+            <p>Kunjungi toko fisik kami untuk melihat langsung koleksi sasirangan authentic dan berkonsultasi dengan ahli budaya kami.</p>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.6229508806155!2d114.73278747359913!3d-3.4415406965329236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2de683219ea5a36d%3A0xbd206d97087849bd!2sDiyang%20Kinjut%20Sasirangan!5e0!3m2!1sen!2sid!4v1751871190803!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div style="text-align: center; margin-top: 1rem; color: #333;">
+                <h3>🏺 Diyang Kinjut Sasirangan</h3>
+                <p>📍 Jalan Ahmad Yani, Km 23,700 RT.2 RW.3. No 1, Landasan Ulin Bar., Kec. Liang Anggang, Kota Banjar Baru, Kalimantan Selatan 70723</p>
+                <p>📞 +62 812-5039-237</p>
+                <p>🕒 Senin - Minggu: 09:00 - 17:00</p>
+                <br>
+                <p><strong>🎨 Fasilitas:</strong></p>
+                <p>• Showroom Sasirangan • Workshop Membatik</p>
+                <p>• Galeri Budaya • Cafe Tradisional</p>
+            </div>
+        </section>
+
+        <section id="quiz" class="section">
+            <h2>🧠 Quiz: Seberapa Paham Anda tentang Sasirangan?</h2>
+            <div class="quiz-container">
+                <div class="question" data-answer="A">
+                    <h3>1. Sasirangan adalah kain tradisional dari daerah mana?</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, 0)">A. Kalimantan Selatan</div>
+                        <div class="option" onclick="selectOption(this, 0)">B. Jawa Barat</div>
+                        <div class="option" onclick="selectOption(this, 0)">C. Bali</div>
+                        <div class="option" onclick="selectOption(this, 0)">D. Sumatera Utara</div>
+                    </div>
+                </div>
+                <div class="question" data-answer="B">
+                    <h3>2. Apa teknik pembuatan kain Sasirangan?</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, 1)">A. Tenun</div>
+                        <div class="option" onclick="selectOption(this, 1)">B. Ikat Celup</div>
+                        <div class="option" onclick="selectOption(this, 1)">C. Bordir</div>
+                        <div class="option" onclick="selectOption(this, 1)">D. Sablon</div>
+                    </div>
+                </div>
+                <div class="question" data-answer="D">
+                    <h3>3. Motif Sasirangan biasanya mengandung makna apa?</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, 2)">A. Keberuntungan</div>
+                        <div class="option" onclick="selectOption(this, 2)">B. Cinta</div>
+                        <div class="option" onclick="selectOption(this, 2)">C. Kekuatan</div>
+                        <div class="option" onclick="selectOption(this, 2)">D. Semua di atas</div>
+                    </div>
+                </div>
+                <div class="quiz-result" id="quiz-result">
+                    <h3>Hasil Quiz Anda</h3>
+                    <p id="quiz-score"></p>
+                    <button class="quiz-button" onclick="resetQuiz()">Ulangi Quiz</button>
+                </div>
+                <button class="quiz-button" onclick="submitQuiz()">Kirim Jawaban</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Sasirangan Web. All rights reserved.</p>
+        <p>Follow us on <a href="#" style="color: #4CAF50;">Instagram</a> | <a href="#" style="color: #4CAF50;">Facebook</a></p>
+    </footer>
+
+    <script>
+        const correctAnswers = ['A', 'B', 'D'];
+        let userSelections = new Array(correctAnswers.length).fill(null);
+
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            // Hide mobile menu if open
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top on section change
+        }
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        function selectOption(selectedElement, questionIndex) {
+            const optionsContainer = selectedElement.parentNode;
+            const options = optionsContainer.querySelectorAll('.option');
+            options.forEach(option => {
+                option.classList.remove('selected');
+            });
+            selectedElement.classList.add('selected');
+            userSelections[questionIndex] = selectedElement.innerText.charAt(0); // Get A, B, C, or D
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            const questions = document.querySelectorAll('.quiz-container .question');
+            questions.forEach((question, index) => {
+                const correctAnswer = question.getAttribute('data-answer');
+                if (userSelections[index] === correctAnswer) {
+                    score++;
+                }
+            });
+
+            const quizResult = document.getElementById('quiz-result');
+            const quizScore = document.getElementById('quiz-score');
+            quizScore.innerText = `Anda menjawab ${score} dari ${correctAnswers.length} pertanyaan dengan benar!`;
+            quizResult.style.display = 'block';
+
+            // Optional: Disable options after submitting
+            document.querySelectorAll('.quiz-container .option').forEach(option => {
+                option.style.pointerEvents = 'none';
+            });
+            document.querySelector('.quiz-button').style.display = 'none'; // Hide submit button
+        }
+
+        function resetQuiz() {
+            userSelections.fill(null);
+            document.querySelectorAll('.quiz-container .option').forEach(option => {
+                option.classList.remove('selected');
+                option.style.pointerEvents = 'auto'; // Re-enable options
+            });
+            document.getElementById('quiz-result').style.display = 'none';
+            document.querySelector('.quiz-button').style.display = 'block'; // Show submit button
+        }
+
+        // Initialize quiz on load
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('home'); // Ensure home section is active on load
+        });
+    </script>
+</body>
+</html>
